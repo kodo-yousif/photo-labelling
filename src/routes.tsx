@@ -3,7 +3,6 @@ import { Route, createRoutesFromChildren } from "react-router-dom"
 import { lazyPageBuilder } from "./lib/route"
 
 import Error from "@/pages/Error"
-import Login from "@/pages/Login"
 import AppLayout from "./containers/AppLayout"
 
 const Home = lazyPageBuilder(() => import("@/pages/Home"))
@@ -18,7 +17,6 @@ const routes = createRoutesFromChildren(
       <Route path="/page1" lazy={Page1} />
       <Route path="/page2" lazy={Page2} />
     </Route>
-    <Route path="/login" Component={Login} />
     <Route path="*" lazy={NotFound} />
   </Route>
 )

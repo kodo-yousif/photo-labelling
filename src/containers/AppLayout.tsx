@@ -1,4 +1,4 @@
-import { Navigate, Outlet, useLocation, useNavigate } from "react-router-dom"
+import { Outlet, useLocation, useNavigate } from "react-router-dom"
 import {
   UserOutlined,
   MenuFoldOutlined,
@@ -6,7 +6,6 @@ import {
 } from "@ant-design/icons"
 import { Avatar, Breadcrumb, Button, Layout, Menu, Popover, theme } from "antd"
 
-import { useUser } from "@/global/useUser"
 import { useCollapse } from "@/global/useCollapse"
 import { GlobalLoading } from "@/components/GlobalLoading"
 import menuItems from "./MenuItems"
@@ -14,7 +13,6 @@ import menuItems from "./MenuItems"
 const { Header, Content, Footer, Sider } = Layout
 
 export default function AppLayout() {
-  const { name, setUser } = useUser()
   const { collapse, toggleCollapse } = useCollapse()
 
   const { pathname } = useLocation()
@@ -24,7 +22,6 @@ export default function AppLayout() {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken()
 
-  if (!name) return <Navigate to="/login" />
   return (
     <Layout className="h-screen overflow-hidden">
       <GlobalLoading />
@@ -52,12 +49,8 @@ export default function AppLayout() {
             title="Welcome"
             placement="bottomRight"
             content={
-              <Button
-                type="link"
-                className="p-0"
-                onClick={() => setUser({ name: null })}
-              >
-                Logout
+              <Button type="link" className="p-0">
+                Setting
               </Button>
             }
           >
