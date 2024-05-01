@@ -9,10 +9,12 @@ import { Avatar, Breadcrumb, Button, Layout, Menu, Popover, theme } from "antd"
 import { useCollapse } from "@/global/useCollapse"
 import { GlobalLoading } from "@/components/GlobalLoading"
 import menuItems from "./MenuItems"
+import { useModal } from "../global/useModal"
 
 const { Header, Content, Footer, Sider } = Layout
 
 export default function AppLayout() {
+  const { openModal } = useModal()
   const { collapse, toggleCollapse } = useCollapse()
 
   const { pathname } = useLocation()
@@ -49,7 +51,11 @@ export default function AppLayout() {
             title="Welcome"
             placement="bottomRight"
             content={
-              <Button type="link" className="p-0">
+              <Button
+                type="link"
+                className="p-0"
+                onClick={() => openModal("setting")}
+              >
                 Setting
               </Button>
             }
